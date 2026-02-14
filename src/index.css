@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-6px);
+    }
+
+    40% {
+        transform: translateX(6px);
+    }
+
+    60% {
+        transform: translateX(-4px);
+    }
+
+    80% {
+        transform: translateX(4px);
+    }
+}
+
+.animate-shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hide scrollbar but keep scrolling */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    /* IE & Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+@keyframes enterUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+        filter: blur(10px);
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes exitUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    to {
+        transform: translateY(-30%);
+        opacity: 0;
+        filter: blur(10px);
+    }
+}
+
+@keyframes enterDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+        filter: blur(10px);
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes exitDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    to {
+        transform: translateY(30%);
+        opacity: 0;
+        filter: blur(10px);
+    }
+}
+
+.animate-enter-up {
+    animation: enterUp 0.7s ease-out forwards;
+}
+
+.animate-exit-up {
+    animation: exitUp 0.7s ease-in forwards;
+}
+
+.animate-enter-down {
+    animation: enterDown 0.7s ease-out forwards;
+}
+
+.animate-exit-down {
+    animation: exitDown 0.7s ease-in forwards;
+}
+
+.lyrics-mask {
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 12%,
+            black 88%,
+            transparent 100%);
+
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 12%,
+            black 88%,
+            transparent 100%);
+}
+
+@keyframes slideUpFade {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-up {
+    animation: slideUpFade 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.premium-card {
+    width: 150px;
+    height: 200px;
+    perspective: 1200px;
+    cursor: pointer;
+    position: relative;
+}
+
+@media only screen and (max-width: 600px){
+    .premium-card {
+            width: 130px;
+            height: 180px;
+        }
+}
+
+.premium-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.premium-front,
+.premium-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    backface-visibility: hidden;
+    overflow: hidden;
+}
+
+.premium-front {
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.9),
+            rgba(255, 228, 236, 0.9));
+    border: 2px solid rgba(255, 182, 193, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: #444;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.premium-card:hover .premium-front {
+    box-shadow:
+        0 0 20px rgba(255, 105, 180, 0.35),
+        0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+.premium-back {
+    transform: rotateY(180deg);
+}
+
+.premium-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.heart-burst {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.heart-burst span {
+    position: absolute;
+    font-size: 16px;
+    animation: heart-pop 0.7s ease forwards;
+}
+
+@keyframes heart-pop {
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-25px) scale(1.4);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#button-area button {
+    touch-action: manipulation;
+}
+
