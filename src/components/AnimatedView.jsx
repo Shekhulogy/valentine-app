@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function AnimatedView({ children, cardKey, direction, onDone, }) {
-
+export default function AnimatedView({ children, cardKey, direction, onDone }) {
   const variants = {
     enter: (dir) => ({
       y: dir === "up" ? 120 : -120,
@@ -21,7 +20,7 @@ export default function AnimatedView({ children, cardKey, direction, onDone, }) 
   };
 
   return (
-    <AnimatePresence mode="wait" initial={false} >
+    <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={cardKey}
         custom={direction}

@@ -42,23 +42,14 @@ const [swipeUnlocked, setSwipeUnlocked] = useState({
 }, []);
 
   useEffect(() => {
-  const stored = localStorage.getItem("valentine_name");
+  const stored = sessionStorage.getItem("valentine_name");
 
   if (!stored) return;
 
-  try {
-    const { value, savedAt } = JSON.parse(stored);
-    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+  const { value } = JSON.parse(stored);
 
-    if (Date.now() - savedAt > TWENTY_FOUR_HOURS) {
-      localStorage.removeItem("valentine_name");
-    }
+  setUserName(value);
 
-    setUserName(value);
-  } catch {
-    // agar corrupt data ho
-    localStorage.removeItem("valentine_name");
-  }
 }, []);
 
 

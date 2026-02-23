@@ -1,20 +1,17 @@
-
 import instaIcon from "../assets/instagram-icon.svg";
 
 export default function ConnectCard() {
-
-  const instagramLink =
-    "https://ig.me/m/sp_garuda";
+  const instagramLink = "https://ig.me/m/sp_garuda";
 
   return (
     <div className="relative h-full w-full flex items-center justify-center px-4">
-      
       {/* 🔲 Card Wrapper */}
-      <div className="w-full max-w-md md:max-w-lg lg:max-w-xl
+      <div
+        className="w-full max-w-md md:max-w-lg lg:max-w-xl
                       h-full flex flex-col justify-center
                       rounded-3xl
-                      px-6 py-8">
-
+                      px-6 py-8"
+      >
         {/* 💖 Title */}
         <div className="text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-pink-600">
@@ -27,7 +24,6 @@ export default function ConnectCard() {
 
         {/* 🔗 Buttons */}
         <div className="flex flex-col gap-4 mt-8">
-
           {/* Instagram */}
           <a
             href={instagramLink}

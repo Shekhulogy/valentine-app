@@ -1,10 +1,6 @@
 import { useRef } from "react";
 
-export default function SwipeContainer({
-  children,
-  onSwipeUp,
-  onSwipeDown,        
-}) {
+export default function SwipeContainer({ children, onSwipeUp, onSwipeDown }) {
   const startY = useRef(0);
 
   const onTouchStart = (e) => {
@@ -12,7 +8,6 @@ export default function SwipeContainer({
   };
 
   const onTouchEnd = (e) => {
-
     const delta = startY.current - e.changedTouches[0].clientY;
     if (Math.abs(delta) < 60) return;
 
@@ -21,7 +16,6 @@ export default function SwipeContainer({
   };
 
   const onWheel = (e) => {
-
     if (e.deltaY > 30) onSwipeUp?.();
     if (e.deltaY < -30) onSwipeDown?.();
   };

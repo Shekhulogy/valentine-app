@@ -6,26 +6,47 @@ export default function NameGate({ onSubmit }) {
   const inputRef = useRef(null);
 
   useEffect(() => {
-  setTimeout(() => {
-    inputRef.current?.focus();
-  }, 300);
-}, []);
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 300);
+  }, []);
 
+  const handleOnChange = (e) => {
+    if (e.target.value === "") {
+      setError(false);
+    }
+    setName(e.target.value);
+  };
+
+  const capitalizeName = (fullName) => {
+    const splitName = fullName.split(" ");
+    for (let i = 0; i < splitName.length; i++) {
+      splitName[i] =
+        splitName[i].charAt(0).toUpperCase() +
+        splitName[i].slice(1).toLowerCase();
+    }
+    return splitName.join(" ");
+  };
 
   const handleSubmit = () => {
-    if (!name.trim()) {
-      setError(true);
-      setTimeout(() => setError(false), 400);
+    if (
+      name === "Komal" ||
+      name === "Komal Yadav" ||
+      name === "komal" ||
+      name === "komal yadav" ||
+      name === "Komal yadav"
+    ) {
+      setError(false);
+      const payload = {
+        value: capitalizeName(name),
+      };
+
+      sessionStorage.setItem("valentine_name", JSON.stringify(payload));
+      onSubmit(payload.value);
       return;
+    } else {
+      setError(true);
     }
-
-    const payload = {
-      value: name,
-      savedAt: Date.now(), // ⏱ timestamp
-    };
-
-    localStorage.setItem("valentine_name", JSON.stringify(payload));
-    onSubmit(name);
   };
 
   return (
@@ -44,28 +65,35 @@ export default function NameGate({ onSubmit }) {
         What’s your name?
       </h2>
 
-      <p className="text-sm sm:text-base text-gray-500 mb-6">
+      <p className="text-sm sm:text-base text-gray-500 mb-4">
         I promise it’s important 🥺
       </p>
 
-      <input
-            type="text"
-            ref={inputRef}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter your name 💕"
-            className={`
-                w-full px-4 py-3 text-base
-                border border-gray-300 rounded-xl
-                outline-none appearance-none
-                focus:outline-none focus:ring-2 focus:ring-pink-400
-                focus:border-pink-400
-                focus:shadow-[0_0_0_2px_rgba(236,72,153,0.25)]
-                mb-4
-                ${error ? "animate-shake border-red-400" : ""}
-            `}
+      <div className="transition-discrete delay-400 duration-300 ease-in-out">
+        {error && (
+          <p className="text-red-400 text-left mb-1">
+            Sorry, It's only for my psandida aurat and if you'r intentionally
+            entering wrong name then please "Enter your real name"
+          </p>
+        )}
+        <input
+          type="text"
+          ref={inputRef}
+          value={name}
+          onChange={handleOnChange}
+          placeholder="Enter your name 💕"
+          className={`
+                  w-full px-4 py-3 text-base
+                  border border-gray-300 rounded-xl
+                  outline-none appearance-none
+                  focus:outline-none focus:ring-2 focus:ring-pink-400
+                  focus:border-pink-400
+                  focus:shadow-[0_0_0_2px_rgba(236,72,153,0.25)]
+                  mb-4
+                  ${error ? "animate-shake border-red-400" : ""}
+              `}
         />
-
+      </div>
 
       <button
         id="name-submit"
